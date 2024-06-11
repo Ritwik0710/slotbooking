@@ -1,11 +1,15 @@
-import Checkbox from "./Checkbox";
 
-function Table({ arrRow, arrCol }) {
+import Checkbox from "./Checkbox";
+let rowarr;
+const changehandler = (rowIndex)=>{
+rowarr.push()
+}
+function Table(arrRow, arrCol ) {
   return (
     <table className="table">
       <thead>
         <tr>
-          <th>{<Checkbox />}</th>
+          <th>{<Checkbox/>}</th>
           {arrCol?.map((i) => (
             <th key={i} scope="col">
               {i}
@@ -16,7 +20,7 @@ function Table({ arrRow, arrCol }) {
       <tbody className="table-group-divider">
         {arrRow?.map((i, rowIndex) => (
           <tr key={rowIndex}>
-            <td>{<Checkbox />}</td>
+            <td>{Checkbox(changehandler())}</td>
             {i?.map((j, colIndex) => (
               <td key={colIndex}>{j}</td>
             ))}

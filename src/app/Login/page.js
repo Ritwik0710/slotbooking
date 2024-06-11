@@ -13,7 +13,7 @@ function Login() {
   const passwordRef = useRef(null); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   const validateEmail = (email) => {
     return String(email)
       .toLowerCase()

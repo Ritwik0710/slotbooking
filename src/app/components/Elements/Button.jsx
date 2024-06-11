@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-function Button(buttonName, url) {
+function Button(buttonName, url,bool,onclick) {
   return (
     <Link href={url}>
-      <button type="button" className="btn btn-primary">
+      <button onClick={()=>{console.log("LOL");onclick();}} disabled= {bool} type="button" className="btn btn-primary">
         {buttonName}
       </button>
     </Link>

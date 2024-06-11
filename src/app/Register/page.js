@@ -4,7 +4,7 @@ import Navbar from "../components/Elements/Navigation/AuthNavigation/page";
 import classes from "./register.module.css";
 import Button from "../components/Elements/Button";
 import Form from "../components/Elements/Form";
-import { createUser } from "../Firebase";
+import { addData, createUser } from "../Firebase";
 
 function Register() {
   const href = "/Login";
@@ -15,9 +15,12 @@ function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = async () => {
+  const handleRegister = async() => {
     // Call your createUser function here
-    createUser(email, password, href);
+    
+    createUser(email, password).then((value)=>{console.log(value);addData({email :email,roles:["student"]},"users/",value);})
+    
+    
   };
 
   return (

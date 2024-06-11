@@ -1,4 +1,4 @@
-function Checkbox() {
+function Checkbox(change) {
   return (
     <div  className="form-check">
       <input
@@ -7,6 +7,7 @@ function Checkbox() {
         type="checkbox"
         value=""
         id="flexCheckDefault"
+        onChange={change()}
       />
     </div>
   );

@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import classes from "./addcourse.module.css";
 import Button from "../../../Elements/Button";
 import Form from "../../../Elements/Form";
-
+import { addData } from "@/app/Firebase";
 
 function AddCourse() {
   
@@ -20,8 +20,19 @@ function AddCourse() {
   const [slotlength, setSlotlength] = useState("");
   const [slotsperweek, setSlotsperweek] = useState("");
 
-  const addCourseHandler = async () => {
-
+  const addCourseHandlerFS = async () =>{
+    let course = {
+      coursename: coursename,
+      startdate: startdate,
+      enddate: enddate,
+      slotlength: slotlength,
+      slotsperweek: slotsperweek,
+    };
+    addData(course,"course/",course.coursename)
+  }
+  
+  const addCourseHandlerRtdb = async () => {
+  
   // Check if slotlength and slotsperweek are not negative
   if (slotlength < 0 || slotsperweek < 0) {
     window.alert("Slot length and Slots per week cannot be negative.");
@@ -62,7 +73,9 @@ function AddCourse() {
             type="text"
             inputRef={coursenameRef}
             value={coursename}
-            setValue={setCoursename}
+            setValue={()=>{
+              console.log(coursename)
+            setCoursename(coursenameRef.current.value)}}
           />
           <Form
             formName="Start Date"
@@ -92,7 +105,7 @@ function AddCourse() {
             value={slotsperweek}
             setValue={setSlotsperweek}
           />
-          <div onClick={addCourseHandler} className={classes.buttons}>
+          <div onClick={addCourseHandlerFS} className={classes.buttons}>
             {Button("SUBMIT", "")}
           </div>
         </form>
